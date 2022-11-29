@@ -1,4 +1,4 @@
-package main.java.ru.gb.oopseminar.data;
+package ru.gb.oopseminar.data;
 
 public class Student extends User {
     private Long studentID;
@@ -10,12 +10,22 @@ public class Student extends User {
 
     @Override
     public String toString() {
-        return "Student{" +
-                "firstName='" + super.getFirstName() + '\'' +
-                ", lastName='" + super.getLastName() + '\'' +
-                ", patronymic='" + super.getPatronymic() + '\'' +
-                ", studentID=" + studentID +
-                '}';
+        if (super.getStudyGroupID().equals(-1L)) {
+            return "Student{" +
+                    "firstName='" + super.getFirstName() +
+                    "', lastName='" + super.getLastName() +
+                    "', patronymic='" + super.getPatronymic() +
+                    "', studentID=" + studentID +
+                    "}";
+        } else {
+            return "Student{" +
+                    "firstName='" + super.getFirstName() +
+                    "', lastName='" + super.getLastName() +
+                    "', patronymic='" + super.getPatronymic() +
+                    "', studentID=" + studentID +
+                    "', studyGroupID=" + super.getStudyGroupID() +
+                    "}";
+        }
     }
 
     public Long getStudentID() {

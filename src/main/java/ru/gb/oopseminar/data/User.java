@@ -1,18 +1,34 @@
-package main.java.ru.gb.oopseminar.data;
+package ru.gb.oopseminar.data;
 
-import java.time.LocalDate;
-
-public class User {
+public abstract class User {
     private String firstName;
-    private String secondName;
+    private String lastName;
     private String patronymic;
-    private LocalDate dateOfBirth;
+    private Long studyGroupID;
 
-    public User(String firstName, String secondName, String patronymic, LocalDate dateOfBirth) {
+    public User(String firstName, String lastName, String patronymic) {
         this.firstName = firstName;
-        this.secondName = secondName;
+        this.lastName = lastName;
         this.patronymic = patronymic;
-        this.dateOfBirth = dateOfBirth;
+        this.studyGroupID = -1L;
+    }
+
+    @Override
+    public String toString() {
+        if (this.studyGroupID.equals(-1L)) {
+            return "User{" +
+                    "firstName='" + this.firstName + '\'' +
+                    ", lastName='" + this.lastName + '\'' +
+                    ", patronymic='" + this.patronymic + '\'' +
+                    "}";
+        } else {
+            return "User{" +
+                    "firstName='" + this.firstName +
+                    "', lastName='" + this.lastName +
+                    "', patronymic='" + this.patronymic +
+                    "', studyGroup=" + this.studyGroupID +
+                    "}";
+        }
     }
 
     public String getFirstName() {
@@ -23,12 +39,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getSecondName() {
-        return secondName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPatronymic() {
@@ -39,48 +55,11 @@ public class User {
         this.patronymic = patronymic;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public Long getStudyGroupID() {
+        return studyGroupID;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-               "firstName='" + firstName + '\'' +
-               ", secondName='" + secondName + '\'' +
-               ", patronymic='" + patronymic + '\'' +
-               ", dateOfBirth=" + dateOfBirth +
-               '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof User)) {
-            return false;
-        }
-
-        User user = (User) o;
-
-        if (getFirstName() != null ? !getFirstName().equals(user.getFirstName()) :
-                user.getFirstName() != null) {
-            return false;
-        }
-        if (getSecondName() != null ? !getSecondName().equals(user.getSecondName()) :
-                user.getSecondName() != null) {
-            return false;
-        }
-        if (getPatronymic() != null ? !getPatronymic().equals(user.getPatronymic()) :
-                user.getPatronymic() != null) {
-            return false;
-        }
-        return getDateOfBirth() != null ? getDateOfBirth().equals(user.getDateOfBirth()) :
-                user.getDateOfBirth() == null;
+    public void setStudyGroupID(Long studyGroup) {
+        this.studyGroupID = studyGroup;
     }
 }

@@ -1,4 +1,4 @@
-package main.java.ru.gb.oopseminar.service;
+package ru.gb.oopseminar.service;
 
 import ru.gb.oopseminar.data.Student;
 import ru.gb.oopseminar.data.Teacher;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserService implements DataService {
-    private final List<User> users;
+    private List<User> users;
 
     public UserService() {
         this.users = new ArrayList<>();
@@ -16,28 +16,50 @@ public class UserService implements DataService {
 
     @Override
     public void createStudent(String firstName, String lastName, String patronymic) {
-        Long id = 0L;
+        Long studentID = 0L;
         for (User user : this.users) {
             if (user instanceof Student) {
-                if (id < ((Student) user).getStudentID()) {
-                    id = ((Student) user).getStudentID();
+                if (studentID < ((Student) user).getStudentID()) {
+                    studentID = ((Student) user).getStudentID();
                 }
             }
         }
-        this.users.add(new Student(firstName, lastName, patronymic, ++id));
+        studentID ++;
+        this.users.add(new Student(firstName, lastName, patronymic, studentID));
+    }
+
+    public List<Student> getAllStudents() {
+        List<Student> students = new ArrayList<>();
+        for (User user : this.users) {
+            if (user instanceof Student) {
+                students.add((Student) user);
+            }
+        }
+        return students;
     }
 
     @Override
     public void createTeacher(String firstName, String lastName, String patronymic) {
-        Long id = 0L;
+        Long teacherID = 0L;
         for (User user : this.users) {
             if (user instanceof Teacher) {
-                if (id < ((Teacher) user).getTeacherID()) {
-                    id = ((Teacher) user).getTeacherID();
+                if (teacherID < ((Teacher) user).getTeacherID()) {
+                    teacherID = ((Teacher) user).getTeacherID();
                 }
             }
         }
-        this.users.add(new Teacher(firstName, lastName, patronymic, ++id));
+        teacherID ++;
+        this.users.add(new Teacher(firstName, lastName, patronymic, teacherID));
+    }
+
+    public List<Teacher> getAllTeachers() {
+        List<Teacher> teachers = new ArrayList<>();
+        for (User user : this.users) {
+            if (user instanceof Teacher) {
+                teachers.add((Teacher) user);
+            }
+        }
+        return teachers;
     }
 
     @Override
@@ -65,5 +87,9 @@ public class UserService implements DataService {
                 }
             }
         }
+    }
+
+    public void deleteAllUsers() {
+        this.users = new ArrayList<>();
     }
 }

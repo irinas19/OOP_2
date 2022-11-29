@@ -1,14 +1,16 @@
-package main.java.ru.gb.oopseminar.data;
+package ru.gb.oopseminar.data;
 
 import java.util.List;
 
 public class StudyGroup {
     private Teacher teacher;
     private List<Student> students;
+    private Long studyGroupID;
 
-    public StudyGroup(Teacher teacher, List<Student> students) {
+    public StudyGroup(Teacher teacher, List<Student> students, Long studyGroupID) {
         this.teacher = teacher;
         this.students = students;
+        this.studyGroupID = studyGroupID;
     }
 
     public Teacher getTeacher() {
@@ -25,5 +27,13 @@ public class StudyGroup {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Long getStudyGroupID() {
+        return studyGroupID;
+    }
+
+    public void setStudyGroupID(Long studyGroupID) {
+        this.studyGroupID = studyGroupID;
     }
 }
